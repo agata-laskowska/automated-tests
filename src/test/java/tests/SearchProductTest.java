@@ -1,14 +1,21 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
+import pages.WebsiteHeaderPage;
+import pages.SearchResultsPage;
 
 public class SearchProductTest extends BaseTest {
 
     @Test
-    public void testSearchProduct() {
-        HomePage homePage = new HomePage(driver);
+    public void searchProduct() {
+        WebsiteHeaderPage websiteHeaderPage = new WebsiteHeaderPage(driver);
+        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
 
-        homePage.enterKeyword();
+        websiteHeaderPage.enterKeyword();
+        websiteHeaderPage.search();
+
+        Assert.assertTrue(searchResultsPage.firstProductContainsKeyword());
+
     }
 }
